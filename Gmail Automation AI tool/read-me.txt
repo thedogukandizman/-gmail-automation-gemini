@@ -1,0 +1,66 @@
+Project Name:
+Gmail Automation with AI Agent (n8n + Google Gemini)
+
+
+Created With:
+
+n8n (Automation Tool)
+
+Google Gemini Chat Model (via Google Cloud API)
+
+Gmail API
+
+Figma (for planning and flow design)
+
+Overview
+This project demonstrates a simple AI-powered automation flow built with n8n. 
+The system listens for a chat message, uses Google Gemini AI to generate a professional email response, and sends the email.
+
+It simulates a smart email assistant that could be expanded into customer support, inbox management, or a personal productivity tool.
+
+Features
+Receives incoming chat messages
+
+Uses Gemini to generate natural language responses
+
+Sends generated messages via Gmail
+
+Maintains short-term memory for context
+
+Fully automated through n8n workflow
+
+📌 Workflow Steps
+Trigger: When a chat message is received
+
+AI Agent: Sends input to Gemini model
+
+Model Selection: Uses Gemini Chat Model V2
+
+Memory: Keeps simple memory context (for now)
+
+Send Email: Outputs the Gemini response through Gmail API
+
+📊 Visual Plan
+The design was planned in Figma, including:
+
+Gmail automation blocks
+
+Key components (AI Agent, Pick Model, Add Gmail, Testing)
+
+💡 Future Improvements
+Add filtering and classification of incoming messages
+
+Use long-term memory or vector DB for multi-turn threads
+
+Create a public-facing web interface
+
+Deploy as a lightweight personal assistant
+
+📁 Files Included
+gmail-automation-ai-agent.json → n8n workflow file
+
+n8n_screenshot.png → Visual screenshot of workflow
+
+figma_plan.png → Project layout from Figma
+
+README.txt → This description

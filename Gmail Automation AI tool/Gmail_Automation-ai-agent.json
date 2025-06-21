@@ -1,0 +1,144 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "b7c766ca-2194-4cea-a9f2-ada12ed8e499",
+      "name": "When chat message received",
+      "webhookId": "ee327b4c-b314-474e-9d5e-d6acf85258a1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        300,
+        20
+      ],
+      "id": "c8ce6c80-1c67-4a46-8a7c-39698c6657a6",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        380,
+        320
+      ],
+      "id": "5c95dc31-ac72-4203-9cab-061902e4d33f",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('To', ``, 'string') }}",
+        "subject": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Subject', `After writing the email, always in the end put Best Regards, and under that my name Dogukan Dizman`, 'string') }}",
+        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        500,
+        320
+      ],
+      "id": "7398f2c2-476b-4852-a9a1-9d386cd82b71",
+      "name": "Sending Mails",
+      "webhookId": "ebfbf77f-9c17-48c0-889f-8957b094c09f",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "rzobjmZNIoxZzlCx",
+          "name": "Gmail account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-1.5-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        220,
+        300
+      ],
+      "id": "bb371362-cf22-42e6-b609-f781df7562d4",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "K0ldaFzsIVrIk63Y",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sending Mails": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "fb842685-5a2a-4311-b9a7-315e59248f57",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "f5e33c7a9bcb74261a8ad0f3926d6ea784ceef8f6eb2b7373e313ce80c3bcc3d"
+  },
+  "id": "PrpD7jP5gpxMTf4F",
+  "tags": []
+}
